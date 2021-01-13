@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nt.testeEdersonNt.entity.Aluno;
@@ -42,6 +43,11 @@ public class AlunoController {
 		}
 	}
 	
+	@GetMapping(value = "/aluno/email/{email}")
+	public Aluno buscar(@RequestParam(value = "email") String email){
+		Aluno aluno = _alunoRepository.findByEmail(email);
+		return aluno;
+	}
 	
 	@PostMapping(value = "/aluno")
 	public Aluno salvarAluno(@Valid @RequestBody Aluno aluno) {
